@@ -1,7 +1,6 @@
-﻿using System.IO;
-using System.Windows;
-using WorkWithData.models;
-using WorkWithData.services;
+﻿using System.Windows;
+using WorkWithData.Data.services;
+using WorkWithData.Domain.models;
 
 namespace WorkWithData
 {
@@ -17,9 +16,8 @@ namespace WorkWithData
             transactions = CsvFileManager.Load("coffe.csv");
             dg_transactions.ItemsSource = transactions;
 
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
-
-            CsvFileManager.Save(transactions, path);
+            //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
+            //CsvFileManager.Save(transactions, path);
         }
     }
 }

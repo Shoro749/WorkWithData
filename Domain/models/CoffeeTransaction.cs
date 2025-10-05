@@ -1,4 +1,4 @@
-﻿namespace WorkWithData.models
+﻿namespace WorkWithData.Domain.models
 {
     public class CoffeeTransaction 
     {

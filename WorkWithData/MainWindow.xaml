@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dg_transactions" Margin="50"/>
+        <TabControl>
+            <TabItem Header="safs">
+                <DataGrid x:Name="dg_transactions" Margin="50"/>
+            </TabItem>
+            <TabItem Header="ass">
+                
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 </Window>

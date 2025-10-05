@@ -1,12 +1,10 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
-using System.IO;
 using System.Text;
-using System.Windows;
-using WorkWithData.models;
+using WorkWithData.Domain.models;
 
-namespace WorkWithData.services
+namespace WorkWithData.Data.services
 {
     public static class CsvFileManager
     {
@@ -56,8 +54,7 @@ namespace WorkWithData.services
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
-                throw;
+                throw new Exception("Error: " + ex.Message);
             }
         }
 
@@ -105,8 +102,7 @@ namespace WorkWithData.services
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
-                throw;
+                throw new Exception("Error: " + ex.Message);
             }
         }
     }

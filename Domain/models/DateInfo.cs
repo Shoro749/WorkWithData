@@ -1,6 +1,4 @@
-﻿using System.Security.Policy;
-
-namespace WorkWithData.models
+﻿namespace WorkWithData.Domain.models
 {
     public class DateInfo
     {
@@ -21,6 +19,6 @@ namespace WorkWithData.models
             Date = date;
         }
 
-        public override string ToString() => $"{TimeOfDay}, {Weekday}, {MonthName}, {WeekdaySort}, {MonthSort}, {Date}";
+        public override string ToString() => $"{TimeOfDay}, {Weekday}, {MonthName}, {/*WeekdaySort}, {MonthSort*/null}{Date.ToString("dd.MM.yyyy")}";
     }
 }
