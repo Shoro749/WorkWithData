@@ -11,6 +11,12 @@
             this.Money = Money;
         }
 
+        public Payment()
+        {
+            CashType = "None";
+            Money = 0;
+        }
+
         public override string ToString() => $"{CashType}, {Money}";
     }
 }

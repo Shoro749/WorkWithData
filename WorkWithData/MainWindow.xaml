@@ -11,7 +11,7 @@
             <TabItem Header="safs">
                 <DataGrid x:Name="dg_transactions" Margin="50"/>
             </TabItem>
-            <TabItem Header="ass">
+            <TabItem Header="Grafics">
                 
             </TabItem>
         </TabControl>

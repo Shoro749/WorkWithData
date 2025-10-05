@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Data.services;
+using System.IO;
+using System.Windows;
 using WorkWithData.Data.services;
 using WorkWithData.Domain.models;
 
@@ -13,11 +15,23 @@ namespace WorkWithData
         public MainWindow()
         {
             InitializeComponent();
-            transactions = CsvFileManager.Load("coffe.csv");
-            dg_transactions.ItemsSource = transactions;
+            try
+            {
+                //transactions = CsvFileManager.Load("coffe.csv");
+                transactions = XmlFileManager.Load<CoffeeTransaction>("transactions_20251005_203620.xml");
+                dg_transactions.ItemsSource = transactions;
 
-            //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
-            //CsvFileManager.Save(transactions, path);
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.xml");
+                //XmlFileManager.Save(transactions, path);
+
+                //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
+                //CsvFileManager.Save(transactions, path);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

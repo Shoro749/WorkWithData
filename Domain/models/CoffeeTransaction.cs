@@ -2,7 +2,6 @@
 {
     public class CoffeeTransaction 
     {
-        // hour_of_day,cash_type,money,coffee_name,Time_of_Day,Weekday,Month_name,Weekdaysort,Monthsort,Date,Time
         public int HourOfDay { get; set; }
         public string Coffee { get; set; }
         public Payment Payment { get; set; }
@@ -16,6 +15,15 @@
             Coffee = coffee;
             DateInfo = dateInfo;
             Time = time;
+        }
+
+        public CoffeeTransaction()
+        {
+            HourOfDay = 0;
+            Payment = new Payment();
+            Coffee = "None";
+            DateInfo = new DateInfo();
+            Time = new TimeSpan();
         }
     }
 }

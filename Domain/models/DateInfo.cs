@@ -19,6 +19,16 @@
             Date = date;
         }
 
+        public DateInfo()
+        {
+            TimeOfDay = "";
+            Weekday = "";
+            MonthName = "";
+            WeekdaySort = 0;
+            MonthSort = 0;
+            Date = new DateTime();
+        }
+
         public override string ToString() => $"{TimeOfDay}, {Weekday}, {MonthName}, {/*WeekdaySort}, {MonthSort*/null}{Date.ToString("dd.MM.yyyy")}";
     }
 }
