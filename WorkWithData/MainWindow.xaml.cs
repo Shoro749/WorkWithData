@@ -18,7 +18,7 @@ namespace WorkWithData
             try
             {
                 //transactions = CsvFileManager.Load("coffe.csv");
-                transactions = XmlFileManager.Load<CoffeeTransaction>("transactions_20251005_203620.xml");
+                transactions = XlsxFileManager.Load("transactions.xlsx");
                 dg_transactions.ItemsSource = transactions;
 
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx");
