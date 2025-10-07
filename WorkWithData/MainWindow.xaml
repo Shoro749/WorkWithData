@@ -9,7 +9,43 @@
     <Grid>
         <TabControl>
             <TabItem Header="safs">
-                <DataGrid x:Name="dg_transactions" Margin="50"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.16*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Filters -->
+                    <GroupBox x:Name="Filters" Grid.RowSpan="4" BorderBrush="#FFB7BDC1">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" >
+                            <TextBlock Text="Price range:" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBox x:Name="tb_min" Width="70" Margin="0,0,10,0"/>
+                                <TextBox x:Name="tb_max" Width="70"/>
+                            </StackPanel>
+
+                            <TextBlock Text="Date range:" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <DatePicker x:Name="dp_start" Width="100" Margin="0,0,10,0"/>
+                                <DatePicker x:Name="dp_end" Width="100"/>
+                            </StackPanel>
+
+                            <Button x:Name="ApplyFilterButton" Content="Apply Filters" Margin="0,15,0,0" 
+                                Padding="5,3" Click="ApplyFilter_Click"/>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <!--Data grid-->
+                    <DataGrid x:Name="dg_transactions" Margin="10 10 10 0" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Grafics">
                 
