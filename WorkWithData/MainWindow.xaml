@@ -14,7 +14,7 @@
         
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="Open..." />
+                <MenuItem Header="Open..." Click="OpenFile_Click"/>
                 <MenuItem Header="Save as">
                     <MenuItem Header="To CSV" Click="ExportCsv_Click"/>
                     <MenuItem Header="To JSON" Click="ExportJson_Click"/>

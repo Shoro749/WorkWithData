@@ -47,7 +47,7 @@ namespace Data.services
                     row++;
                 }
 
-                workbook.SaveAs("$transactions_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx");
+                workbook.SaveAs(path);
             }
             catch (Exception ex)
             {

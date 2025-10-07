@@ -18,11 +18,11 @@ namespace WorkWithData
             InitializeComponent();
             try
             {
-                transactions = CsvFileManager.Load("coffe.csv");
+                //transactions = CsvFileManager.Load("coffe.csv");
                 //transactions = XlsxFileManager.Load("transactions.xlsx");
-                dg_transactions.ItemsSource = transactions;
+                //dg_transactions.ItemsSource = transactions;
 
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx");
+                //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx");
                 //XlsxFileManager.Save(transactions, path);
 
                 //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
@@ -167,7 +167,7 @@ namespace WorkWithData
                 var dialog = new SaveFileDialog
                 {
                     Title = "Save transactions file",
-                    Filter = "Xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
+                    Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
                     FileName = $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
                 };
 
@@ -178,6 +178,48 @@ namespace WorkWithData
                 }
             }
             catch (Exception ex) { MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "All Supported Files|*.json;*.xml;*.csv;*.xlsx|" +
+                    "JSON Files (*.json)|*.json|" +
+                    "XML Files (*.xml)|*.xml|" +
+                    "CSV Files (*.csv)|*.csv|" +
+                    "Excel Files (*.xlsx)|*.xlsx";
+                ofd.Title = "Open...";
+                ofd.DefaultExt = "csv";
+
+                if (ofd.ShowDialog() == true)
+                {
+                    string path = ofd.FileName;
+                    string ext = Path.GetExtension(path).ToLower();
+                    switch (ext)
+                    {
+                        case ".csv":
+                            transactions = CsvFileManager.Load(path);
+                            break;
+
+                        case ".json":
+                            transactions = JsonFileManager.Load(path);
+                            break;
+
+                        case ".xml":
+                            transactions = XmlFileManager.Load(path);
+                            break;
+
+                        case ".xlsx":
+                            transactions = XlsxFileManager.Load(path);
+                            break;
+                    }
+                    UpdateTransactions(transactions);
+                    MessageBox.Show("File opened successfully!");
+                }
+            }
+            catch (Exception ex) { MessageBox.Show($"Error opening file: {ex.Message}"); }
         }
     }
 }

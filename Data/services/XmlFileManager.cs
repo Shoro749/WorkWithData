@@ -1,14 +1,15 @@
 ﻿using System.Xml.Serialization;
+using WorkWithData.Domain.models;
 
 namespace Data.services
 {
     public static class XmlFileManager
     {
-        public static void Save<T>(List<T> data, string path)
+        public static void Save(List<CoffeeTransaction> data, string path)
         {
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<CoffeeTransaction>));
                 using (FileStream fs = new FileStream(path, FileMode.Create))
                 {
                     serializer.Serialize(fs, data);
@@ -20,19 +21,19 @@ namespace Data.services
             }
         }
 
-        public static List<T> Load<T>(string path)
+        public static List<CoffeeTransaction> Load(string path)
         {
             try
             {
                 if (!File.Exists(path))
                 {
-                    return new List<T>();
+                    return new List<CoffeeTransaction>();
                 }
 
-                XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<CoffeeTransaction>));
                 using (FileStream fs = new FileStream(path, FileMode.Open))
                 {
-                    List<T> data = (List<T>)serializer.Deserialize(fs);
+                    List<CoffeeTransaction> data = (List<CoffeeTransaction>)serializer.Deserialize(fs);
                     return data;
                 }
             }
