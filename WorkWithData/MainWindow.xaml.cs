@@ -84,5 +84,19 @@ namespace WorkWithData
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            string text = tb_search.Text;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                UpdateTransactions(transactions);
+                return;
+            }
+
+            var search = transactions.Where(t => t.Coffee == text).ToList();
+            UpdateTransactions(search);
+        }
     }
 }

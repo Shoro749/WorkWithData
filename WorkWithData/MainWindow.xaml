@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl>
-            <TabItem Header="safs">
+            <TabItem Header="Main">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.16*"/>
@@ -42,9 +42,13 @@
                                 Padding="5,3" Click="ApplyFilter_Click"/>
                         </StackPanel>
                     </GroupBox>
-                    
+
+                    <!-- Search -->
+                    <TextBox x:Name="tb_search" Grid.Column="1" Grid.ColumnSpan="3" Margin="35 35 150 35"/>
+                    <Button Content="Search" Grid.Column="3" Margin="60 35 35 35" Click="Search_Click"/>
+
                     <!--Data grid-->
-                    <DataGrid x:Name="dg_transactions" Margin="10 10 10 0" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+                    <DataGrid x:Name="dg_transactions" Margin="10 10 10 0" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" CanUserSortColumns="True"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Grafics">
