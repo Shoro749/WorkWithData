@@ -1,4 +1,5 @@
 ﻿using Data.services;
+using Microsoft.Win32;
 using System.IO;
 using System.Windows;
 using WorkWithData.Data.services;
@@ -97,6 +98,86 @@ namespace WorkWithData
 
             var search = transactions.Where(t => t.Coffee == text).ToList();
             UpdateTransactions(search);
+        }
+
+        private void ExportCsv_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dialog = new SaveFileDialog
+                {
+                    Title = "Save transactions file",
+                    Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+                    FileName = $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.csv"
+                };
+
+                if (dialog.ShowDialog() == true)
+                {
+                    CsvFileManager.Save(transactions, dialog.FileName);
+                    MessageBox.Show("File saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        private void ExportJson_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dialog = new SaveFileDialog
+                {
+                    Title = "Save transactions file",
+                    Filter = "Json files (*.json)|*.json|All files (*.*)|*.*",
+                    FileName = $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.json"
+                };
+
+                if (dialog.ShowDialog() == true)
+                {
+                    JsonFileManager.Save(transactions, dialog.FileName);
+                    MessageBox.Show("File saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        private void ExportXml_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dialog = new SaveFileDialog
+                {
+                    Title = "Save transactions file",
+                    Filter = "Xml files (*.xml)|*.xml|All files (*.*)|*.*",
+                    FileName = $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.xml"
+                };
+
+                if (dialog.ShowDialog() == true)
+                {
+                    XmlFileManager.Save(transactions, dialog.FileName);
+                    MessageBox.Show("File saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        private void ExportXlsx_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dialog = new SaveFileDialog
+                {
+                    Title = "Save transactions file",
+                    Filter = "Xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
+                    FileName = $"transactions_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+                };
+
+                if (dialog.ShowDialog() == true)
+                {
+                    XlsxFileManager.Save(transactions, dialog.FileName);
+                    MessageBox.Show("File saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }

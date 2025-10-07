@@ -7,7 +7,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="Open..." />
+                <MenuItem Header="Save as">
+                    <MenuItem Header="To CSV" Click="ExportCsv_Click"/>
+                    <MenuItem Header="To JSON" Click="ExportJson_Click"/>
+                    <MenuItem Header="To XML" Click="ExportXml_Click"/>
+                    <MenuItem Header="To XLSX" Click="ExportXlsx_Click"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Exit" />
+            </MenuItem>
+
+            <MenuItem Header="_Report">
+                <MenuItem Header="Generate DOCX report"/>
+                <MenuItem Header="Generate XLSX report"/>
+            </MenuItem>
+        </Menu>
+
+        <TabControl Grid.Row="1">
             <TabItem Header="Main">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -48,7 +72,7 @@
                     <Button Content="Search" Grid.Column="3" Margin="60 35 35 35" Click="Search_Click"/>
 
                     <!--Data grid-->
-                    <DataGrid x:Name="dg_transactions" Margin="10 10 10 0" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" CanUserSortColumns="True"/>
+                    <DataGrid x:Name="dg_transactions" Margin="10 10 10 10" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" CanUserSortColumns="True"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Grafics">
