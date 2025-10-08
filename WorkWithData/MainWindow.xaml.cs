@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using WorkWithData.Data.services;
 using WorkWithData.Domain.models;
+using WorkWithData.windows;
 
 namespace WorkWithData
 {
@@ -220,6 +221,21 @@ namespace WorkWithData
                 }
             }
             catch (Exception ex) { MessageBox.Show($"Error opening file: {ex.Message}"); }
+        }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CreateTransaction
+            {
+                Owner = this
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                var transaction = dialog.ResultTransaction;
+                transactions.Add(transaction);
+                UpdateTransactions(transactions);
+            }
         }
     }
 }

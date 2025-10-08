@@ -19,6 +19,21 @@
             Date = date;
         }
 
+        public DateInfo(DateTime date)
+        {
+            Date = date;
+            TimeOfDay = date.Hour switch
+            {
+                >= 5 and < 12 => "Morning",
+                >= 12 and < 18 => "Day",
+                _ => "Evening"
+            };
+            Weekday = date.DayOfWeek.ToString();
+            MonthName = date.ToString("MMMM");
+            WeekdaySort = (int)date.DayOfWeek;
+            MonthSort = date.Month;
+        }
+
         public DateInfo()
         {
             TimeOfDay = "";
@@ -26,7 +41,7 @@
             MonthName = "";
             WeekdaySort = 0;
             MonthSort = 0;
-            Date = new DateTime();
+            Date = DateTime.Now;
         }
 
         public override string ToString() => $"{TimeOfDay}, {Weekday}, {MonthName}, {/*WeekdaySort}, {MonthSort*/null}{Date.ToString("dd.MM.yyyy")}";
