@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WorkWithData"
+        xmlns:local="clr-namespace:WorkWithData" xmlns:charts="clr-namespace:DocumentFormat.OpenXml.Drawing;assembly=DocumentFormat.OpenXml" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -81,7 +81,22 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Grafics">
-                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <lvc:CartesianChart x:Name="chart_line"
+                        Grid.Row="0"
+                        LegendLocation="Right"
+                        Margin="10"/>
+
+                    <lvc:CartesianChart x:Name="chart_column"
+                        Grid.Row="1"
+                        LegendLocation="Right"
+                        Margin="10"/>
+                </Grid>
             </TabItem>
         </TabControl>
         
