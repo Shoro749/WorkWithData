@@ -22,12 +22,12 @@
                     <MenuItem Header="To XLSX" Click="ExportXlsx_Click"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Exit" />
+                <MenuItem Header="Exit" Click="Exit_Click"/>
             </MenuItem>
 
             <MenuItem Header="_Report">
-                <MenuItem Header="Generate DOCX report"/>
-                <MenuItem Header="Generate XLSX report"/>
+                <MenuItem Header="Generate DOCX report" Click="DOCXReport_Click"/>
+                <MenuItem Header="Generate XLSX report" Click="XLSXReport_Click"/>
             </MenuItem>
         </Menu>
 

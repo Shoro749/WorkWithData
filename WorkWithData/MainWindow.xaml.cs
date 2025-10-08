@@ -1,4 +1,5 @@
-﻿using Data.services;
+﻿using Data.reports;
+using Data.services;
 using DocumentFormat.OpenXml.Math;
 using LiveCharts;
 using LiveCharts.Wpf;
@@ -112,18 +113,14 @@ namespace WorkWithData
 
                 if (!string.IsNullOrWhiteSpace(tb_min.Text))
                 {
-                    if (double.TryParse(tb_min.Text, out double parsedMin))
-                        min = parsedMin;
-                    else
-                        throw new Exception("Min price is not a valid number.");
+                    if (double.TryParse(tb_min.Text, out double parsedMin)) min = parsedMin;
+                    else throw new Exception("Min price is not a valid number.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(tb_max.Text))
                 {
-                    if (double.TryParse(tb_max.Text, out double parsedMax))
-                        max = parsedMax;
-                    else
-                        throw new Exception("Max price is not a valid number.");
+                    if (double.TryParse(tb_max.Text, out double parsedMax)) max = parsedMax;
+                    else  throw new Exception("Max price is not a valid number.");
                 }
 
                 DateTime? startDate = dp_start.SelectedDate;
@@ -131,10 +128,8 @@ namespace WorkWithData
 
                 if (startDate.HasValue && endDate.HasValue)
                 {
-                    if (startDate > endDate)
-                        throw new Exception("The start date cannot be later than the end date.");
-                    if (startDate > DateTime.Now || endDate > DateTime.Now)
-                        throw new Exception("Dates cannot be later than today.");
+                    if (startDate > endDate) throw new Exception("The start date cannot be later than the end date.");
+                    if (startDate > DateTime.Now || endDate > DateTime.Now) throw new Exception("Dates cannot be later than today.");
                 }
 
                 var filtered = transactions.Where(t =>
@@ -145,6 +140,8 @@ namespace WorkWithData
                 ).ToList();
 
                 UpdateTransactions(filtered);
+                GenerateLineChart(filtered);
+                GenerateColumnChart(filtered);
             }
             catch (Exception ex)
             {
@@ -317,11 +314,6 @@ namespace WorkWithData
 
                 var dialog = new EditTransaction(selected) { Owner = this };
 
-                //var existing = transactions.FirstOrDefault(t =>
-                //    t.DateInfo.Date == selected.DateInfo.Date &&
-                //    t.Time == selected.Time &&
-                //    t.Coffee == selected.Coffee);
-
                 if (dialog.ShowDialog() == true)
                 {
                     var transaction = dialog.EditedTransaction;
@@ -341,16 +333,49 @@ namespace WorkWithData
                 var selected = dg_transactions.SelectedItem as CoffeeTransaction;
                 if (selected == null) throw new Exception("Choose a transaction to delete");
 
-                //var existing = transactions.FirstOrDefault(t =>
-                //    t.DateInfo.Date == selected.DateInfo.Date &&
-                //    t.Time == selected.Time &&
-                //    t.Coffee == selected.Coffee);
-
                 transactions.Remove(selected);
                 UpdateTransactions(transactions);
                 MessageBox.Show("Transaction successfully deleted");
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void DOCXReport_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SaveFileDialog
+            {
+                Title = "Save docx report",
+                Filter = "Docx files (*.docs)|*.docs|All files (*.*)|*.*",
+                FileName = $"reprot_{DateTime.Now:yyyyMMdd_HHmmss}.docs"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                DocxReportGenerator.GenerateReport(transactions, dialog.FileName, new List<string>());
+                MessageBox.Show("Report saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            
+        }
+
+        private void XLSXReport_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SaveFileDialog
+            {
+                Title = "Save docx report",
+                Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
+                FileName = $"reprot_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                XlsxReportGenerator.GenerateReport(transactions, dialog.FileName, new List<string>());
+                MessageBox.Show("Report saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }
