@@ -36,7 +36,11 @@ namespace WorkWithData
             }
         }
 
-        private void UpdateTransactions(List<CoffeeTransaction> list) => dg_transactions.ItemsSource = list;
+        private void UpdateTransactions(List<CoffeeTransaction> list)
+        {
+            dg_transactions.ItemsSource = list;
+            dg_transactions.Items.Refresh();
+        }
 
         private void ApplyFilter_Click(object sender, RoutedEventArgs e)
         {
@@ -225,17 +229,67 @@ namespace WorkWithData
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new CreateTransaction
+            try
             {
-                Owner = this
-            };
+                var dialog = new CreateTransaction
+                {
+                    Owner = this
+                };
 
-            if (dialog.ShowDialog() == true)
-            {
-                var transaction = dialog.ResultTransaction;
-                transactions.Add(transaction);
-                UpdateTransactions(transactions);
+                if (dialog.ShowDialog() == true)
+                {
+                    var transaction = dialog.ResultTransaction;
+                    transactions.Add(transaction);
+                    UpdateTransactions(transactions);
+                    MessageBox.Show("Transaction successfully created");
+                }
             }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var selected = dg_transactions.SelectedItem as CoffeeTransaction;
+                if (selected == null) throw new Exception("Choose a transaction to edit");
+
+                var dialog = new EditTransaction(selected) { Owner = this };
+
+                //var existing = transactions.FirstOrDefault(t =>
+                //    t.DateInfo.Date == selected.DateInfo.Date &&
+                //    t.Time == selected.Time &&
+                //    t.Coffee == selected.Coffee);
+
+                if (dialog.ShowDialog() == true)
+                {
+                    var transaction = dialog.EditedTransaction;
+                    transactions.Remove(selected);
+                    transactions.Add(transaction);
+                    UpdateTransactions(transactions);
+                    MessageBox.Show("Transaction successfully edited");
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var selected = dg_transactions.SelectedItem as CoffeeTransaction;
+                if (selected == null) throw new Exception("Choose a transaction to delete");
+
+                //var existing = transactions.FirstOrDefault(t =>
+                //    t.DateInfo.Date == selected.DateInfo.Date &&
+                //    t.Time == selected.Time &&
+                //    t.Coffee == selected.Coffee);
+
+                transactions.Remove(selected);
+                UpdateTransactions(transactions);
+                MessageBox.Show("Transaction successfully deleted");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

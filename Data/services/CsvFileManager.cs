@@ -46,7 +46,7 @@ namespace WorkWithData.Data.services
                         csv.WriteField(transaction.DateInfo.WeekdaySort);
                         csv.WriteField(transaction.DateInfo.MonthSort);
                         csv.WriteField(transaction.DateInfo.Date.ToString("dd/MM/yyyy"));
-                        csv.WriteField("`" + transaction.Time.ToString(@"h\:mm\.f"));
+                        csv.WriteField("" + transaction.Time.ToString(@"h\:mm\.f"));
 
                         csv.NextRecord();
                     }

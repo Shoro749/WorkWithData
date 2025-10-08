@@ -5,18 +5,21 @@ using WorkWithData.Domain.models;
 namespace WorkWithData.windows
 {
     /// <summary>
-    /// Interaction logic for CreateTransaction.xaml
+    /// Interaction logic for EditTransaction.xaml
     /// </summary>
-    public partial class CreateTransaction : Window
+    public partial class EditTransaction : Window
     {
-        public CoffeeTransaction ResultTransaction { get; private set; }
-        public CreateTransaction()
+        public CoffeeTransaction EditedTransaction { get; private set; }
+        public EditTransaction(CoffeeTransaction transaction)
         {
             InitializeComponent();
+            tb_coffee.Text = transaction.Coffee;
             cb_cashtype.SelectedIndex = 1;
+            tb_money.Text = transaction.Payment.Money.ToString();
+            dp_date.SelectedDate = transaction.DateInfo.Date;
         }
 
-        private void Submit_Click(object sender, RoutedEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -26,7 +29,7 @@ namespace WorkWithData.windows
                 if (!double.TryParse(tb_money.Text, out double money))
                     throw new Exception("Invalid amount");
 
-                ResultTransaction = new CoffeeTransaction
+                EditedTransaction = new CoffeeTransaction
                 {
                     Coffee = coffee,
                     Payment = new Payment { CashType = cashType, Money = money },
