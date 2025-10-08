@@ -52,9 +52,9 @@
 
 ## 4. Архітектура застосунку
 **Збірки/шари:**  
-- **Domain (Core/Model):** сутності, інтерфейси, валідація.  
-- **Data (Infrastructure):** провайдери форматів, сервіси звітів, мапери, логування.  
-- **UI (Presentation):** Windows Forms, екрани, взаємодія з сервісами.
+- **Domain (Core/Model):** сутності, валідація.  
+- **Data (Infrastructure):** провайдери форматів, сервіси звітів.  
+- **WorkWithData (Presentation):** WPF, екрани, взаємодія з сервісами.
 
 **Дерево рішень (спрощено):**
 ```
@@ -65,7 +65,7 @@
   /Resources (шаблони DOCX/XLSX, іконки)
   /Outputs (Reports, Charts)
 ```
-**Залежності/NuGet:** _CsvHelper, System.Text.Json/Newtonsoft.Json, ClosedXML/EPPlus, DocX/OpenXML, OxyPlot/ScottPlot/LiveCharts тощо._
+**Залежності/NuGet:** _CsvHelper, Newtonsoft.Json, ClosedXML, DocX, LiveCharts ._
 
 ---
 
@@ -110,7 +110,7 @@
 ---
 
 ## 9. Візуалізація
-**Компонент:** _OxyPlot/ScottPlot/LiveCharts/інше_  
+**Компонент:** LiveCharts_  
 **Побудовані графіки (мін. 2):**  
 - Тип, що зображено (X/Y/Series), призначення, інтерпретація.  
 - Експорт у PNG для звіту DOCX (шляхи до файлів).  
