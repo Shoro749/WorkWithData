@@ -373,7 +373,7 @@ namespace WorkWithData
 
             if (dialog.ShowDialog() == true)
             {
-                XlsxReportGenerator.GenerateReport(transactions, dialog.FileName, new List<string>());
+                XlsxReportGenerator.GenerateReport(dialog.FileName, transactions);
                 MessageBox.Show("Report saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
