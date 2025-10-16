@@ -33,7 +33,7 @@
 |MonthName  |string  | Mar              | Назва місяця                            |  
 |WeekdaySort|int     | 2                | Номер тижня                             |  
 |MonthSort  |int     | 4                | Номер місяця                            |  
-|Date       |DateTime| 1                | Дата                                    |  
+|Date       |DateTime| 01.05.2024       | Дата                                    |  
 |Time       |TimeSpan| 15:50.5          | Час                                     |  
 
 **Обсяг:** _рядків: 3548, стовпців: 11  
