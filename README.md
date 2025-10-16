@@ -23,18 +23,18 @@
 **Походження/джерело:** [_URL або шлях_](https://github.com/Shoro749/WorkWithData)
 **Структура полів (приклад таблиці):**
 
-| Поле      | Тип    | Приклад значення | Опис/правила                            |
-|HourOfDay  |int     |      15          |  Година, коли була зорблена транзакція  |
-|CoffeeName |string  | Latte            | Назва кави / Не пустий                  |
-|CashType   |string  | card             | Спосіб оплати (готівкою/картою)         |
-|Money      |double  | 38,7             | Скільки було оплачено                   |
-|TimeOfDay  |string  | Morning          | Коли була зроблена транзакція           |
-|WeekDay    |string  | Fri              | День тижня                              |
-|MonthName  |string  | Mar              | Назва місяця                            |
-|WeekdaySort|int     | 2                | Номер тижня                             |
-|MonthSort  |int     | 4                | Номер місяця                            |
-|Date       |DateTime| 1                | Дата                                    |
-|Time       |TimeSpan| 15:50.5          | Час                                     |
+| Поле      | Тип    | Приклад значення | Опис/правила                            |  
+|HourOfDay  |int     |      15          |  Година, коли була зорблена транзакція  |  
+|CoffeeName |string  | Latte            | Назва кави / Не пустий                  |  
+|CashType   |string  | card             | Спосіб оплати (готівкою/картою)         |  
+|Money      |double  | 38,7             | Скільки було оплачено                   |  
+|TimeOfDay  |string  | Morning          | Коли була зроблена транзакція           |  
+|WeekDay    |string  | Fri              | День тижня                              |  
+|MonthName  |string  | Mar              | Назва місяця                            |  
+|WeekdaySort|int     | 2                | Номер тижня                             |  
+|MonthSort  |int     | 4                | Номер місяця                            |  
+|Date       |DateTime| 1                | Дата                                    |  
+|Time       |TimeSpan| 15:50.5          | Час                                     |  
 
 **Обсяг:** _рядків: 3548, стовпців: 11  
 **Проблеми якості:** дублікати
